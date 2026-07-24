@@ -1,6 +1,6 @@
 {
   "version": "2.9.6",
-  "versionCode": 8,
+  "versionCode": 7,
   "apkUrl": "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/2.9.6.apk",
   "releaseDate": "2026-07-24",
   "notes": "תיקון בעיית מטמון BLE - חיבור אמין יותר לבקר\nהדלקה ראשונה מודדת ונרדמת מהר (לא פותחת BLE)\nתצוגת אחוזי התקדמות בזמן חיבור\nתמיכה בגרסאות רב-ספרתיות (למשל 2.10.x)"
