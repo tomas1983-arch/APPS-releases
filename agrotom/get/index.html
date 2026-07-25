@@ -36,12 +36,12 @@
   </div>
 
   <script>
-    // דף הפניה קבוע. אין צורך לשנות משהו כאן כשמשחררים גרסה חדשה -
-    // הוא תמיד קורא את היעד העדכני מ-version.json.
+    // דף הפניה קבוע. אין צורך לשנות משהו כאן לעולם - הוא תמיד קורא
+    // את היעד העדכני משדה apkUrl ב-version.json ופשוט פותח אותו.
     //
-    // כשעוברים לחנות גוגל: מוסיפים שדה "storeUrl" ל-version.json
-    // (למשל "storeUrl": "https://play.google.com/store/apps/details?id=...")
-    // והדף הזה יעדיף אותו אוטומטית על פני הורדת ה-APK, בלי לגעת בקובץ הזה.
+    // כשעוברים לחנות גוגל: משנים את הערך של apkUrl ב-version.json
+    // לקישור לחנות. אין הבדל בהתנהגות בין קובץ APK לקישור לחנות -
+    // שניהם נפתחים באותה צורה, גם כאן וגם באפליקציה עצמה.
     var MANIFEST_URL = "https://raw.githubusercontent.com/tomas1983-arch/APPS-releases/main/agrotom/version.json";
     var FALLBACK_URL = "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk";
 
@@ -53,7 +53,7 @@
     fetch(MANIFEST_URL + "?t=" + Date.now())
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        goTo(data.storeUrl || data.apkUrl || FALLBACK_URL);
+        goTo(data.apkUrl || FALLBACK_URL);
       })
       .catch(function () {
         document.getElementById("status").textContent = "לחץ להורדה:";
