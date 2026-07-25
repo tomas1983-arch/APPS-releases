@@ -30,38 +30,28 @@
   <p id="status">מעביר אותך להורדה...</p>
 
   <div id="fallback">
-    <a class="btn" id="downloadLink" href="https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk">
-      הורדת האפליקציה
-    </a>
+    <a class="btn" id="downloadLink" href="#">הורדת האפליקציה</a>
   </div>
 
   <script>
     // דף הפניה קבוע. אין צורך לשנות משהו כאן לעולם - הוא תמיד קורא
-    // את היעד העדכני משדה apkUrl ב-version.json ופשוט פותח אותו.
-    //
-    // כשעוברים לחנות גוגל: משנים את הערך של apkUrl ב-version.json
-    // לקישור לחנות. אין הבדל בהתנהגות בין קובץ APK לקישור לחנות -
-    // שניהם נפתחים באותה צורה, גם כאן וגם באפליקציה עצמה.
+    // את היעד העדכני משדה apkUrl ב-version.json, וגם ההפניה
+    // האוטומטית וגם הכפתור משתמשים באותו ערך שנקרא עכשיו -
+    // אין שום קישור קשיח בקובץ הזה.
     var MANIFEST_URL = "https://raw.githubusercontent.com/tomas1983-arch/APPS-releases/main/agrotom/version.json";
-    var FALLBACK_URL = "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk";
-
-    function goTo(url) {
-      document.getElementById("downloadLink").href = url;
-      window.location.href = url;
-    }
 
     fetch(MANIFEST_URL + "?t=" + Date.now())
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        goTo(data.apkUrl || FALLBACK_URL);
+        document.getElementById("downloadLink").href = data.apkUrl;
+        window.location.href = data.apkUrl;
       })
       .catch(function () {
-        document.getElementById("status").textContent = "לחץ להורדה:";
-        document.getElementById("fallback").style.display = "block";
+        document.getElementById("status").textContent = "תקלה בטעינה, רענן את הדף.";
       });
 
     // אם ההפניה האוטומטית לא קרתה מסיבה כלשהי (חסימת JS, רשת איטית) -
-    // מציגים כפתור ידני אחרי רגע.
+    // מציגים את הכפתור הידני אחרי רגע, עם אותו קישור שכבר נקרא.
     setTimeout(function () {
       document.getElementById("fallback").style.display = "block";
     }, 1500);
