@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הורדת AgroTom</title>
+<style>
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    text-align: center;
+    padding: 60px 20px;
+    color: #222;
+  }
+  h1 { margin-bottom: 8px; }
+  .btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 14px 28px;
+    background: #2E7D32;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+  }
+  #fallback { display: none; }
+</style>
+</head>
+<body>
+  <h1>AgroTom</h1>
+  <p id="status">מעביר אותך להורדה...</p>
+
+  <div id="fallback">
+    <a class="btn" id="downloadLink" href="https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk">
+      הורדת האפליקציה
+    </a>
+  </div>
+
+  <script>
+    // דף הפניה קבוע. אין צורך לשנות משהו כאן כשמשחררים גרסה חדשה -
+    // הוא תמיד קורא את היעד העדכני מ-version.json.
+    //
+    // כשעוברים לחנות גוגל: מוסיפים שדה "storeUrl" ל-version.json
+    // (למשל "storeUrl": "https://play.google.com/store/apps/details?id=...")
+    // והדף הזה יעדיף אותו אוטומטית על פני הורדת ה-APK, בלי לגעת בקובץ הזה.
+    var MANIFEST_URL = "https://raw.githubusercontent.com/tomas1983-arch/APPS-releases/main/agrotom/version.json";
+    var FALLBACK_URL = "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk";
+
+    function goTo(url) {
+      document.getElementById("downloadLink").href = url;
+      window.location.href = url;
+    }
+
+    fetch(MANIFEST_URL + "?t=" + Date.now())
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        goTo(data.storeUrl || data.apkUrl || FALLBACK_URL);
+      })
+      .catch(function () {
+        document.getElementById("status").textContent = "לחץ להורדה:";
+        document.getElementById("fallback").style.display = "block";
+      });
+
+    // אם ההפניה האוטומטית לא קרתה מסיבה כלשהי (חסימת JS, רשת איטית) -
+    // מציגים כפתור ידני אחרי רגע.
+    setTimeout(function () {
+      document.getElementById("fallback").style.display = "block";
+    }, 1500);
+  </script>
+</body>
+</html>
