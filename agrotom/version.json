@@ -1,7 +1,7 @@
 {
-  "version": "2.9.7",
-  "versionCode": 8,
+  "version": "2.10.1",
+  "versionCode": 9,
   "apkUrl": "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk",
-  "releaseDate": "2026-08-21",
-  "notes": "תיקון כיול חישוב לחות (kPa) לפי מדידות שדה בפועל"
+  "releaseDate": "2026-09-26",
+  "notes": "תצוגת סוללה באחוזים (0-100%), ואפשרות תיקון ידני לערכי kPa בהגדרות"
 }
