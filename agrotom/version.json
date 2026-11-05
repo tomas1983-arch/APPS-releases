@@ -1,7 +1,7 @@
 {
-  "version": "2.10.1",
-  "versionCode": 9,
+  "version": "2.10.2",
+  "versionCode": 10,
   "apkUrl": "https://github.com/tomas1983-arch/APPS-releases/raw/main/agrotom/agrotom.apk",
-  "releaseDate": "2026-09-26",
-  "notes": "תצוגת סוללה באחוזים (0-100%), ואפשרות תיקון ידני לערכי kPa בהגדרות"
+  "releaseDate": "2026-11-05",
+  "notes": "כיול kPa חדש לפי מדידות בשטח - ערכים מדויקים יותר. אם הגדרת תיקון kPa ידני, מומלץ לאפס אותו."
 }
